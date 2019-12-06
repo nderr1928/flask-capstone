@@ -6,6 +6,7 @@ from flask_login import LoginManager
 from flask_cors import CORS
 from playhouse.shortcuts import model_to_dict
 from resources.users import user
+from resources.medicines import medicine
 
 DEBUG = True
 PORT = 8000
@@ -37,23 +38,18 @@ def after_request(response):
 def index(brand_name):
     fda_label_key = 'Pb5Vody5Yg2QRlYWBCJ0DNzO1OR3DX2JbgtANafr'
     fda_label_url = 'https://api.fda.gov/drug/label.json?api_key={}&limit=100'.format(fda_label_key)
-    # print("url: {}".format(fda_label_url))
-
-    # print('searched item: {}'.format(brand_name))
-    # print('data type: {}'.format(type(brand_name)))
     response = fda_label_url + '&search=openfda.brand_name:{}'.format(brand_name)
-    # print("Response: {}".format(response))
-
     fda_label_request = requests.get(response)
-    print('label_request.json: {}'.format(fda_label_request.json()))
+    # print('label_request.json: {}'.format(fda_label_request.json()))
     return jsonify(fda_label_request.json())
+
 
 
 CORS(user, origins=['http://localhost:3000', 'https://capstone-react.herokuapp.com'], supports_credentials=True)
 app.register_blueprint(user, url_prefix='/api/v1/users')
 
-# CORS(medicine, origins=['http://localhost:3000'], supports_credentials=True)
-# app.register_blueprint(medicine, url_prefix='/api/vi/medicines')
+CORS(medicine, origins=['http://localhost:3000'], supports_credentials=True)
+app.register_blueprint(medicine, url_prefix='/api/vi/medicines')
 
 CORS(app, origins=['http://localhost:3000'], supports_credentials=True)
 
