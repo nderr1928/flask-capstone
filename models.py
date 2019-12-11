@@ -14,7 +14,6 @@ class User(Model):
     email = CharField(unique = True)
     password = CharField()
     admin = BooleanField(default = 0)
-    location = CharField(default = "")
     is_active = BooleanField(default=1)
 
     def __str__(self):
@@ -30,10 +29,14 @@ class User(Model):
 class Medicine(Model):
     brand_name = CharField()
     last_taken = DateTimeField(default = "")
-    dosage = DecimalField(decimal_places=1, default='')
+    dosage = IntegerField(default='')
     dosage_unit = CharField(default='')
-    quantity_remaining = DecimalField(decimal_places=1, default='')
-    userId = ForeignKeyField(User, backref='medicines')
+    quantity_remaining = IntegerField(default='')
+    user_id = ForeignKeyField(User, backref='medicines')
+    drug_id = CharField()
+    refill_needed = BooleanField(default=0)
+    frequency_value = IntegerField(default='')
+    frequency_unit = CharField(default='') 
 
     class Meta:
         db_table = 'medicines'

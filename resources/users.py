@@ -54,3 +54,11 @@ def login():
     
     except models.DoesNotExist:
         return jsonify(data = {}, status = {'code': 401, 'message': 'Account does not exist.'})
+
+    # logout
+
+# @user.route("/logout")
+# # @login_required
+# def logout():
+#     logout_user()
+#     return 'logged out'
