@@ -51,7 +51,7 @@ app.register_blueprint(user, url_prefix='/api/v1/users')
 CORS(medicine, origins=['http://localhost:3000', 'https://apotherx.herokuapp.com'], supports_credentials=True)
 app.register_blueprint(medicine, url_prefix='/api/v1/medicines')
 
-# CORS(app, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(app, origins=['http://localhost:3000', 'https://apotherx.herokuapp.com'], supports_credentials=True)
 
 if 'ON_HEROKU' in os.environ:
     print('Hitting')
