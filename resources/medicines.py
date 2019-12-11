@@ -57,11 +57,11 @@ def update_datetime(medicine_id):
 @medicine.route('/update/<medicine_id>', methods=['PUT'])
 def update_saved_medicine(medicine_id):
     payload = request.get_json()
-    print("payload: {}".format(payload))
+    # print("payload: {}".format(payload))
     updated_medicine = models.Medicine.update(payload).where(models.Medicine.id == medicine_id).execute()
-    print('updated medicine: {}'.format(updated_medicine))
-    updated_medicine_dict = model_to_dict(updated_medicine)
-    print('dict: {}'.format(updated_medicine_dict))
+    # print('updated medicine: {}'.format(updated_medicine))
+    updated_medicine_dict = model_to_dict(models.Medicine.get(id = medicine_id)) 
+    # print('dict: {}'.format(updated_medicine_dict))
     # print('updated medicine dict: {}'.format(updated_medicine_dict))
-    # return jsonify(data=updated_medicine_dict, status={'code': 200, 'message': 'Update successful'})
-    return 'test'
+    return jsonify(data=updated_medicine_dict, status={'code': 200, 'message': 'Update successful'})
+    # return 'test'
