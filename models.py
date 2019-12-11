@@ -29,13 +29,13 @@ class User(Model):
 class Medicine(Model):
     brand_name = CharField()
     last_taken = DateTimeField(default=datetime.datetime.now())
-    dosage = IntegerField(default='')
+    dosage = CharField(default='')
     dosage_unit = CharField(default='')
-    quantity_remaining = IntegerField(default='')
+    quantity_remaining = CharField(default='')
     user_id = ForeignKeyField(User, backref='medicines')
     drug_id = CharField()
     refill_needed = BooleanField(default=0)
-    frequency_value = IntegerField(default='')
+    frequency_value = CharField(default='')
     frequency_unit = CharField(default='') 
 
     class Meta:
