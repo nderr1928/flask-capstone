@@ -28,7 +28,7 @@ class User(Model):
 
 class Medicine(Model):
     brand_name = CharField()
-    last_taken = DateTimeField(default = "")
+    last_taken = DateTimeField(default=datetime.datetime.now())
     dosage = IntegerField(default='')
     dosage_unit = CharField(default='')
     quantity_remaining = IntegerField(default='')
