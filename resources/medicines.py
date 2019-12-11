@@ -32,7 +32,7 @@ def save():
 
     new_medicine_dict = model_to_dict(new_medicine)
     print(new_medicine_dict)
-    return jsonify(new_medicine_dict)
+    return jsonify(data=new_medicine_dict, status={'code': 201, 'message': 'Successfully saved'})
     # return 'saved'
 
 # Delete saved medicine
