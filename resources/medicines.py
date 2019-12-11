@@ -28,6 +28,7 @@ def save():
     payload = request.get_json()
     print('Payload recieved: {}'.format(payload))
     payload['user_id'] = current_user.id
+    print("Edited payload: {}".format(payload))
     new_medicine = models.Medicine.create(**payload)
 
     new_medicine_dict = model_to_dict(new_medicine)
