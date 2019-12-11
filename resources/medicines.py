@@ -6,11 +6,11 @@ from playhouse.shortcuts import model_to_dict
 
 medicine = Blueprint('medicines', 'medicine')
 
-@medicine.route('/', methods=['GET'])
-def list_medicines():
+@medicine.route('/<user_id>', methods=['GET'])
+def list_medicines(user_id):
     try:
-        print('current user: {}'.format(current_user.id))
-        query = models.Medicine.select().where(models.Medicine.user_id == current_user.id)
+        print('current user: {}'.format(user_id))
+        query = models.Medicine.select().where(models.Medicine.user_id == user_id)
         print('query: {}'.format(query))
         # print('pull all: {}'.format([model_to_dict(d) for d in models.Medicine.select()]))
         medicines = [model_to_dict(d) for d in query]
